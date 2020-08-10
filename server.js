@@ -37,6 +37,24 @@ app.route('/users/:id')
 // READ
 .get((req,res)=>{
   // User.findById()
+  User.findById(req.params.id,(err, data)=> {
+    if(err) {
+      res.json({
+        success: false,
+        message: err
+      })
+    } else if (!data) {
+      res.json({
+        success: false,
+        message: "Nor Fount!"
+      })
+    } else {
+      res.json({
+        success: true,
+        message: data
+      })
+    }
+  })
 })
 // UPDATE
 .put((req,res)=>{
